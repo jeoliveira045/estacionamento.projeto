@@ -5,7 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,31 +30,19 @@ public class EstacionamentoController {
     }
 
     @GetMapping
-    public List<EstacionamentoDTO> findAll(){
+    public ResponseEntity<List<EstacionamentoDTO>> findAll(){
         List<Estacionamento> listaEst = service.findAll();
         List<EstacionamentoDTO> resultado = mapper.toEstacionamentoDTOList(listaEst);
-        return resultado;
-        // for(Estacionamento e: service.findAll()){
-        //     EstacionamentoDTO dto = new EstacionamentoDTO();
-        //     dto.setId(e.getId());
-        //     dto.setLicense(e.getLicense());
-        //     dto.setState(e.getState());
-        //     dto.setModel(e.getModel());
-        //     dto.setColor(e.getColor());
-        //     dto.setEntryDate(e.getEntryDate());
-        //     dto.setExitDate(e.getExitDate());
-        //     dto.setBill(e.getBill());
-        //     listaDTO.add(dto);
-        // }
-        // return listaDTO;
+        return ResponseEntity.ok().body(resultado);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EstacionamentoDTO> findById(@PathVariable String id){
+        return ResponseEntity.ok().body(mapper.estacionamentoDTO(service.findById(id)));
+    }
+
+    @PostMapping("/novo-carro")
+    public ResponseEntity<Void> create(@RequestBody Estacionamento estacionamento){
+        ResponseEntity.ok().build();
     }
 }
-
-// private String id;
-// private String license;
-// private String state;
-// private String model;
-// private String color;
-// private LocalDateTime entryDate;
-// private LocalDateTime exitDate;
-// private Double bill;

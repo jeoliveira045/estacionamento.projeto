@@ -16,8 +16,11 @@ public class EstacionamentoService {
 
     static {
         var id = getUUID();
+        var id2 = getUUID();
         Estacionamento estacionamento = new Estacionamento(id, "DMS-1111", "SC", "CELTA", "PRETO");
+        Estacionamento estacionamento1 = new Estacionamento(id2, "DWV-1112", "RJ", "KWID", "AZUL");
         estacionamentoMap.put(id, estacionamento);
+        estacionamentoMap.put(id2, estacionamento1);
     }
     private static String getUUID(){
         return UUID.randomUUID().toString().replace("-", "");
@@ -25,5 +28,13 @@ public class EstacionamentoService {
 
     public List<Estacionamento> findAll(){
         return estacionamentoMap.values().stream().collect(Collectors.toList());
+    }
+
+    public Estacionamento findById(String id){
+        return estacionamentoMap.get(id);
+    }
+
+    public void create(Estacionamento estacionamento){
+        estacionamentoMap.put(getUUID(), estacionamento);
     }
 }
