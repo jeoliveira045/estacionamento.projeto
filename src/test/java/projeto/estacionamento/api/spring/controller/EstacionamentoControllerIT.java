@@ -58,7 +58,8 @@ public class EstacionamentoControllerIT {
         est.setId("3");
         est.setLicense("DRT-3471");
         est.setModel("Corolla");
-        est.setState("AMARELO");
+        est.setState("Belém");
+        est.setColor("AMARELO");
         est.setEntryDate(LocalDateTime.parse("2023-01-17T15:34:00"));
         est.setExitDate(LocalDateTime.parse("2023-01-17T16:57:00"));
         est.setBill(47.50);
