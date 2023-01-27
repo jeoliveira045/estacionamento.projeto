@@ -25,11 +25,11 @@ public class EstacionamentoService {
         var id2 = getUUID();
         var id3 = getUUID();
         Estacionamento estacionamento = new Estacionamento(id, "DMS-1111", "SC", "CELTA", "PRETO");
-        Estacionamento estacionamento1 = new Estacionamento(id2, "DWV-1112", "RJ", "KWID", "AZUL");
-        Estacionamento estacionamento2 = new Estacionamento(id3, "DWV-1112", "RJ", "KWID", "AZUL", LocalDateTime.parse("2023-01-26T19:00:00"));
+//        Estacionamento estacionamento1 = new Estacionamento(id2, "DWV-1112", "RJ", "KWID", "AZUL");
+//        Estacionamento estacionamento2 = new Estacionamento(id3, "DWV-1112", "RJ", "KWID", "AZUL", LocalDateTime.parse("2023-01-26T19:00:00"));
         estacionamentoMap.put(id, estacionamento);
-        estacionamentoMap.put(id2, estacionamento1);
-        estacionamentoMap.put(id3, estacionamento2);
+//        estacionamentoMap.put(id2, estacionamento1);
+//        estacionamentoMap.put(id3, estacionamento2);
     }
     private static String getUUID(){
         return UUID.randomUUID().toString().replace("-", "");
