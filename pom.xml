@@ -44,8 +44,24 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
-		
-
+		<dependency>
+		<!-- Essa dependência nos permite criar a documentação da api diretamente no projeto -->
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+		<!-- Dependência que nos permite configurar uma interface grafica da nossa documentação -->
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+		<!--Nos permite configurar os testes da nossa api de maneira segura  -->
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

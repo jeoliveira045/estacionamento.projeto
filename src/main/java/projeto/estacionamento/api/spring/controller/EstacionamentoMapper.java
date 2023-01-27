@@ -17,6 +17,10 @@ public class EstacionamentoMapper {
         return MODEL_MAPPER.map(estacionamento, EstacionamentoDTO.class);
     }
 
+    public Estacionamento estacionamento(EstacionamentoDTO estacionamentodto){
+        return MODEL_MAPPER.map(estacionamentodto, Estacionamento.class);
+    }
+
     public List<EstacionamentoDTO> toEstacionamentoDTOList(List<Estacionamento> listaEst) {
         return listaEst.stream().map(this::estacionamentoDTO).collect(Collectors.toList());
     }
