@@ -80,7 +80,7 @@ public class EstacionamentoController {
     @PostMapping("saida-carro/{id}")
     @ApiOperation("Define o horario de saida do carro e o valor do estacionamento")
     public ResponseEntity<EstacionamentoDTO> exit(@PathVariable String id){
-        EstacionamentoDTO est = mapper.estacionamentoDTO(service.exit(id));
+        EstacionamentoDTO est = mapper.estacionamentoDTO(service.checkout(id));
         return ResponseEntity.ok().body(est);
     }
 
