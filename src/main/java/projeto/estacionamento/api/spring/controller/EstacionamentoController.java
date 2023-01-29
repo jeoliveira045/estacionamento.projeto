@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import projeto.estacionamento.api.spring.DTO.EstacionamentoCreateDTO;
 import projeto.estacionamento.api.spring.DTO.EstacionamentoDTO;
 import projeto.estacionamento.api.spring.model.Estacionamento;
 import projeto.estacionamento.api.spring.service.EstacionamentoService;
@@ -52,8 +53,8 @@ public class EstacionamentoController {
 
     @PostMapping("/novo-carro")
     @ApiOperation("Registra um carro novo no estacionamento")
-    public ResponseEntity<EstacionamentoDTO> create(@RequestBody EstacionamentoDTO estacionamento){
-        Estacionamento est = mapper.estacionamento(estacionamento);
+    public ResponseEntity<EstacionamentoDTO> create(@RequestBody EstacionamentoCreateDTO estacionamento){
+        Estacionamento est = mapper.estacionamentoCreateDto(estacionamento);
         EstacionamentoDTO estDto = mapper.estacionamentoDTO(service.create(est));
         return ResponseEntity.status(HttpStatus.CREATED).body(estDto);
     }

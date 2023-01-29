@@ -34,14 +34,6 @@ public class EstacionamentoControllerIT {
 
     @Test
     void whenFindAllCheckResultado() {
-        // RestAssured.given()
-        // .when()
-        // .get("/estacionamento")
-        // .then()
-        // .statusCode(200)
-        // .body()
-
-        // ou
 
         RestAssured.given()
                 .when()

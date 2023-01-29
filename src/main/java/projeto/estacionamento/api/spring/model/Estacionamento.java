@@ -4,9 +4,18 @@ import java.time.LocalDateTime;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Data
 @NoArgsConstructor
+@Entity
 public class Estacionamento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String license;
     private String state;
@@ -16,22 +25,7 @@ public class Estacionamento {
     private LocalDateTime exitDate;
     private Double bill;
     
-    public Estacionamento(String id, String license, String state, String model, String color) {
-        this.id = id;
-        this.license = license;
-        this.state = state;
-        this.model = model;
-        this.color = color;
-    }
 
-    public Estacionamento(String id, String license, String state, String model, String color, LocalDateTime entryDate) {
-        this.id = id;
-        this.license = license;
-        this.state = state;
-        this.model = model;
-        this.color = color;
-        this.entryDate = entryDate;
-    }
 
     
 
