@@ -55,7 +55,8 @@ public class EstacionamentoController {
     @ApiOperation("Registra um carro novo no estacionamento")
     public ResponseEntity<EstacionamentoDTO> create(@RequestBody EstacionamentoCreateDTO estacionamento){
         Estacionamento est = mapper.estacionamentoCreateDto(estacionamento);
-        EstacionamentoDTO estDto = mapper.estacionamentoDTO(service.create(est));
+        Estacionamento est2 = service.create(est);
+        EstacionamentoDTO estDto = mapper.estacionamentoDTO(est2);
         return ResponseEntity.status(HttpStatus.CREATED).body(estDto);
     }
 

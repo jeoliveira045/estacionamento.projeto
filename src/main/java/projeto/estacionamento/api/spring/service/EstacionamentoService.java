@@ -36,7 +36,8 @@ public class EstacionamentoService {
     }
 
     public Estacionamento create(Estacionamento estacionamento){
-        estacionamento.setId(getUUID());
+        String uuid = getUUID();
+        estacionamento.setId(uuid);
         estacionamento.setEntryDate(LocalDateTime.now());
         repository.save(estacionamento);
         return estacionamento;
@@ -53,12 +54,21 @@ public class EstacionamentoService {
 
     }
 
-    public Estacionamento exit(String id){
-        Estacionamento est =  findById(id);
+//    public Estacionamento exit(String id){
+//        Estacionamento est =  findById(id);
+//        est.setExitDate(LocalDateTime.now());
+//        Duration time = Duration.between(est.getEntryDate(), est.getExitDate());
+//        Double bill = 5.0 + 7.0 * time.toHoursPart();
+//        est.setBill(bill);
+//        return est;
+//    }
+
+    public Estacionamento checkout(String id){
+        Estacionamento est = findById(id);
         est.setExitDate(LocalDateTime.now());
-        Duration time = Duration.between(est.getEntryDate(), est.getExitDate());
-        Double bill = 7.0 * time.toHoursPart();
-        est.setBill(bill);
+        est.setBill(EstacionamentoCheckOut.getBill(est));
+        repository.save(est);
         return est;
+
     }
 }
