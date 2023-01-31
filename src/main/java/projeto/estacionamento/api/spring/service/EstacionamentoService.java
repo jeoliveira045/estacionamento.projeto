@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import projeto.estacionamento.api.spring.DTO.EstacionamentoDTO;
 import projeto.estacionamento.api.spring.exception.EstacionamentoNotFound;
 import projeto.estacionamento.api.spring.model.Estacionamento;
@@ -26,10 +27,12 @@ public class EstacionamentoService {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
+    @Transactional(readOnly = true) // vai fazer com que os métodos chamados estejam dentro de uma transação
     public List<Estacionamento> findAll(){
         return repository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Estacionamento findById(String id){
         return repository.findById(id).orElseThrow(() ->
                 new EstacionamentoNotFound(id));
