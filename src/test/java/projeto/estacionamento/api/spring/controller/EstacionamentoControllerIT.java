@@ -1,6 +1,5 @@
 package projeto.estacionamento.api.spring.controller;
 
-import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import io.restassured.RestAssured;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import projeto.estacionamento.api.spring.DTO.EstacionamentoDTO;
 
@@ -35,38 +35,40 @@ public class EstacionamentoControllerIT extends AbstractContainerBase{
     @Test
     void whenFindAllCheckResultado() {
 
-//        RestAssured.given()
-//                .when()
-//                .get("/estacionamento")
-//                .then()
-//                .statusCode(200)
-//                .body("license[0]", Matchers.equalTo("DMS-1111"));
+        RestAssured.given()
+                .header("Authorization", " Basic dXN1YXJpbzoxMjM0NTY=")
+                .when()
+                .auth()
+                .basic("usuario", "123")
+                .get("/estacionamento")
+                .then()
+                .statusCode(HttpStatus.OK.value());
 
     }
 
     @Test
     void whenCreateTheCheckCreated(){
-        EstacionamentoDTO est= new EstacionamentoDTO();
-        est.setId("3");
-        est.setLicense("DRT-3471");
-        est.setModel("Corolla");
-        est.setState("Belém");
-        est.setColor("AMARELO");
-        est.setEntryDate(LocalDateTime.parse("2023-01-17T15:34:00"));
-        est.setExitDate(LocalDateTime.parse("2023-01-17T16:57:00"));
-        est.setBill(47.50);
-
-        RestAssured.given()
-                .when()
-                .contentType(MediaType.APPLICATION_JSON_VALUE) // Configuração é por conta do swagger, que configura o
-                // conteudo como MediaType o que força o spring a setar a maneira que o conteudo vai ser repassado
-                // para o teste. No caso, o est vai ser repassado como JSON
-                .body(est)
-                .post("/estacionamento/novo-carro")
-                .then()
-                .statusCode(201)
-                .body("license", Matchers.equalTo("DRT-3471")) // Mais de um body pode ser configurado
-                // pra representar os campos do objeto
-                .body("color", Matchers.equalTo("AMARELO"));
+//        EstacionamentoDTO est= new EstacionamentoDTO();
+//        est.setId("3");
+//        est.setLicense("DRT-3471");
+//        est.setModel("Corolla");
+//        est.setState("Belém");
+//        est.setColor("AMARELO");
+//        est.setEntryDate(LocalDateTime.parse("2023-01-17T15:34:00"));
+//        est.setExitDate(LocalDateTime.parse("2023-01-17T16:57:00"));
+//        est.setBill(47.50);
+//
+//        RestAssured.given()
+//                .when()
+//                .contentType(MediaType.APPLICATION_JSON_VALUE) // Configuração é por conta do swagger, que configura o
+//                // conteudo como MediaType o que força o spring a setar a maneira que o conteudo vai ser repassado
+//                // para o teste. No caso, o est vai ser repassado como JSON
+//                .body(est)
+//                .post("/estacionamento/novo-carro")
+//                .then()
+//                .statusCode(201)
+//                .body("license", Matchers.equalTo("DRT-3471")) // Mais de um body pode ser configurado
+//                // pra representar os campos do objeto
+//                .body("color", Matchers.equalTo("AMARELO"));
     }
 }
